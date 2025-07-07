@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RF Repair Shop - Repair Form</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h1>RF Repair Shop</h1>
+          <p>Established 1990</p>
+        </div>
+        <div class="nav-buttons">
+          <a href="index.html" class="nav-button active"
+            ><i class="fas fa-plus-circle"></i> New Repair</a
+          >
+          <a href="pending.html" class="nav-button"
+            ><i class="fas fa-clock"></i> Pending Repairs</a
+          >
+          <a href="completed.html" class="nav-button"
+            ><i class="fas fa-check-circle"></i> Completed Repairs</a
+          >
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="form-section fade-in">
+          <h2><i class="fas fa-file-alt"></i> New Repair Form</h2>
+
+          <div class="form-group">
+            <label for="cust-name">Customer Name *</label>
+            <input
+              type="text"
+              id="cust-name"
+              class="form-control"
+              placeholder="Enter customer name"
+              required
+            />
+            <div class="error-message" id="cust-name-error">
+              Please enter a valid customer name
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cust-contact">Contact Number *</label>
+            <input
+              type="tel"
+              id="cust-contact"
+              class="form-control"
+              placeholder="Enter contact number"
+              required
+            />
+            <div class="error-message" id="cust-contact-error">
+              Please enter a valid contact number
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cust-address">Address</label>
+            <textarea
+              id="cust-address"
+              class="form-control"
+              placeholder="Enter customer address"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="item-brand">Item Brand *</label>
+            <input
+              type="text"
+              id="item-brand"
+              class="form-control"
+              placeholder="Enter item brand"
+              required
+            />
+            <div class="error-message" id="item-brand-error">
+              Please enter the item brand
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="item-model">Item Model *</label>
+            <input
+              type="text"
+              id="item-model"
+              class="form-control"
+              placeholder="Enter item model"
+              required
+            />
+            <div class="error-message" id="item-model-error">
+              Please enter the item model
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="item-color">Item Color</label>
+            <input
+              type="text"
+              id="item-color"
+              class="form-control"
+              placeholder="Enter item color"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Parts to be Replaced</label>
+            <div class="parts-section">
+              <div class="parts-input-group">
+                <input
+                  type="text"
+                  id="part-name"
+                  class="form-control"
+                  placeholder="Enter part name"
+                />
+                <button id="add-part" class="btn btn-success">
+                  <i class="fas fa-plus"></i>
+                  Add
+                </button>
+              </div>
+              <ul id="parts-list" class="parts-list"></ul>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="total-price">Total Price (₱) *</label>
+            <input
+              type="number"
+              id="total-price"
+              class="form-control"
+              placeholder="0.00"
+              min="0"
+              step="0.01"
+              required
+            />
+            <div class="error-message" id="total-price-error">
+              Please enter a valid price
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="payment-status">Payment Status *</label>
+            <select id="payment-status" class="form-control" required>
+              <option value="Not Paid">Not Paid</option>
+              <option value="Paid">Paid</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="preview-section fade-in">
+          <h3><i class="fas fa-eye"></i> Receipt Preview</h3>
+          <div class="preview" id="receipt-preview">
+            Receipt preview will appear here...
+          </div>
+
+          <div class="total-section">
+            <h4>Total Amount</h4>
+            <div class="total-amount" id="total-display">₱0.00</div>
+            <div class="status-badge" id="status-display">
+              <i class="fas fa-times-circle"></i>
+              Not Paid
+            </div>
+          </div>
+
+          <div class="print-buttons">
+            <button class="btn btn-primary" onclick="printReceipt()">
+              <i class="fas fa-print"></i>
+              Print Receipt
+            </button>
+            <button class="btn btn-success" onclick="printStub()">
+              <i class="fas fa-ticket-alt"></i>
+              Print Claim Stub
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
