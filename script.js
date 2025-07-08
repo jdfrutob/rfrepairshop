@@ -183,10 +183,10 @@ function printReceipt() {
         <head>
             <style>
                 @media print {
-                  body, pre { width: 58mm; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
+                  body, pre { width: 58mm; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
                 }
-                body { width: 58mm; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
-                pre { width: 58mm; white-space: pre-wrap; word-break: break-all; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; }
+                body { width: 58mm; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
+                pre { width: 58mm; white-space: pre-wrap; word-break: break-all; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; }
             </style>
         </head>
         <body>
@@ -215,10 +215,10 @@ function printStub() {
         <head>
             <style>
                 @media print {
-                  body, pre { width: 58mm; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
+                  body, pre { width: 58mm; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
                 }
-                body { width: 58mm; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
-                pre { width: 58mm; white-space: pre-wrap; word-break: break-all; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; }
+                body { width: 58mm; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
+                pre { width: 58mm; white-space: pre-wrap; word-break: break-all; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; }
             </style>
         </head>
         <body>
