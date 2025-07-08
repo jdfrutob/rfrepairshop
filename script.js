@@ -177,13 +177,16 @@ function printReceipt() {
     "RECEIPT"
   );
 
-  const w = window.open("", "", "width=400,height=600");
+  const w = window.open("", "", "width=220,height=600");
   w.document.write(`
         <html>
         <head>
             <style>
-                body { font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; margin: 20px; text-align: left; }
-                pre { white-space: pre-wrap; }
+                @media print {
+                  body, pre { width: 58mm; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
+                }
+                body { width: 58mm; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
+                pre { width: 58mm; white-space: pre-wrap; word-break: break-all; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; }
             </style>
         </head>
         <body>
@@ -206,13 +209,16 @@ function printStub() {
   saveTransactionToLocalStorage(stubControlNumber);
   const stubContent = generateReceiptContent(stubControlNumber, "CLAIM STUB");
 
-  const w = window.open("", "", "width=400,height=500");
+  const w = window.open("", "", "width=220,height=500");
   w.document.write(`
         <html>
         <head>
             <style>
-                body { font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; margin: 20px; text-align: left; }
-                pre { white-space: pre-wrap; }
+                @media print {
+                  body, pre { width: 58mm; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
+                }
+                body { width: 58mm; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
+                pre { width: 58mm; white-space: pre-wrap; word-break: break-all; margin: 0; font-family: 'Courier New', monospace; font-size: 11px; }
             </style>
         </head>
         <body>
