@@ -1,6 +1,6 @@
 const express = require("express");
 const escpos = require("escpos");
-escpos.USB = require("escpos-usb");
+escpos.USB = require("@node-escpos/usb");
 
 const app = express();
 app.use(express.json());
