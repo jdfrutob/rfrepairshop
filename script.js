@@ -163,13 +163,11 @@ function printReceipt() {
     alert("Please fill in all required fields before printing.");
     return;
   }
-
   const status = document.getElementById("payment-status").value;
   if (status !== "Paid") {
     alert('Cannot print receipt: Payment status must be "Paid".');
     return;
   }
-
   const receiptControlNumber = generateControlNumber();
   saveTransactionToLocalStorage(receiptControlNumber);
   const receiptContent = generateReceiptContent(
@@ -177,26 +175,14 @@ function printReceipt() {
     "RECEIPT"
   );
 
-  const w = window.open("", "", "width=220,height=600");
-  w.document.write(`
-        <html>
-        <head>
-            <style>
-                @media print {
-                  body, pre { width: 58mm; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
-                }
-                body { width: 58mm; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
-                pre { width: 58mm; white-space: pre-wrap; word-break: break-all; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; }
-            </style>
-        </head>
-        <body>
-            <pre>${receiptContent}</pre>
-        </body>
-        </html>
-    `);
-  w.document.close();
-  w.print();
-  w.close();
+  fetch("http://localhost:3000/print", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ receipt: receiptContent }),
+  })
+    .then((res) => res.text())
+    .then((msg) => alert(msg))
+    .catch((err) => alert("Print failed: " + err));
 }
 
 function printStub() {
@@ -204,31 +190,18 @@ function printStub() {
     alert("Please fill in all required fields before printing.");
     return;
   }
-
   const stubControlNumber = generateControlNumber();
   saveTransactionToLocalStorage(stubControlNumber);
   const stubContent = generateReceiptContent(stubControlNumber, "CLAIM STUB");
 
-  const w = window.open("", "", "width=220,height=500");
-  w.document.write(`
-        <html>
-        <head>
-            <style>
-                @media print {
-                  body, pre { width: 58mm; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
-                }
-                body { width: 58mm; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.2; }
-                pre { width: 58mm; white-space: pre-wrap; word-break: break-all; margin: 0 !important; font-family: 'Courier New', monospace; font-size: 11px; }
-            </style>
-        </head>
-        <body>
-            <pre>${stubContent}</pre>
-        </body>
-        </html>
-    `);
-  w.document.close();
-  w.print();
-  w.close();
+  fetch("http://localhost:3000/print", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ receipt: stubContent }),
+  })
+    .then((res) => res.text())
+    .then((msg) => alert(msg))
+    .catch((err) => alert("Print failed: " + err));
 }
 
 function saveTransactionToLocalStorage(controlNumber) {
@@ -302,7 +275,9 @@ function generateReceiptContent(controlNumber, documentType) {
       32
     )}\nControl No: ${controlNumber}\nDate: ${new Date().toLocaleDateString()}\nTime: ${new Date().toLocaleTimeString()}\n\nCustomer: ${name}\n\nParts to be replaced:\n${
       parts || "None"
-    }\n\nTotal Price: ${formattedTotal}\n${"=".repeat(32)}`;
+    }\n\nTotal Price: ${formattedTotal}\nPAYMENT STATUS: ${status}\n${"=".repeat(
+      32
+    )}`;
   } else {
     return `${"=".repeat(
       32

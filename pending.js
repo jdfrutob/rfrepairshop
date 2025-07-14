@@ -174,8 +174,36 @@ document.addEventListener("DOMContentLoaded", function () {
             : "undefined"
         }</div>
       </div>
+      <div style="margin-top: 1.5rem; text-align: center;">
+        <button id="print-service-copy" class="btn btn-primary"><i class="fa fa-print"></i> Print Service Copy</button>
+      </div>
     `;
     modal.style.display = "block";
+
+    // Add event listener for the print button
+    setTimeout(() => {
+      const printBtn = document.getElementById("print-service-copy");
+      if (printBtn) {
+        printBtn.onclick = function () {
+          // Compose the service copy content
+          const serviceCopy =
+            `${"=".repeat(32)}\n` +
+            `SERVICE COPY\n` +
+            `Control No: ${transaction.controlNumber}\n` +
+            `Date Received: ${transaction.date || "N/A"}\n` +
+            `\nParts to be replaced:\n${transaction.parts || "None"}\n` +
+            `${"=".repeat(32)}`;
+          fetch("http://localhost:3000/print", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ receipt: serviceCopy }),
+          })
+            .then((res) => res.text())
+            .then((msg) => alert(msg))
+            .catch((err) => alert("Print failed: " + err));
+        };
+      }
+    }, 0);
   }
 
   renderTable();
