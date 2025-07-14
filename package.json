@@ -4,7 +4,7 @@
   "main": "print-server.js",
   "dependencies": {
     "escpos": "^3.0.0-alpha.6",
-    "@node-escpos/usb": "^3.0.0-alpha.6",
+    "@node-escpos/usb": "github:node-escpos/escpos-usb",
     "express": "^4.18.2"
   }
 }
